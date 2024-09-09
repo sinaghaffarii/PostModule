@@ -1,0 +1,27 @@
+﻿using PostModule.Domain.CityEntity;
+using PostModule.Domain.Common;
+
+namespace PostModule.Domain.StateEntity
+{
+    public class State : BaseEntity<int>
+    {
+        public string Title { get; private set; }
+        public string CloseStates { get; private set; }
+        public List<City> Cities { get; set; }
+        public State(string title)
+        {
+            Title = title;
+            CloseStates = "";
+            Cities = new();
+        }
+        public void Edit(string title)
+        {
+            Title = title;
+        }
+        public void ChangeCloseStates(List<int> States)
+        {
+            CloseStates = string.Join("-", States);
+        }
+    }
+}
+}
