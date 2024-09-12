@@ -9,36 +9,8 @@ using System.Threading.Tasks;
 
 namespace PostModule.Infrastructure.EF.Repositories
 {
-    public class StateRepository : IStateRepository
+    public class StateRepository : Repository<int , State>,  IStateRepository
     {
-        public bool Create(State state)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Exist(Expression<Func<State, bool>> expression)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<State> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public State GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Save()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Update(State state)
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 }
