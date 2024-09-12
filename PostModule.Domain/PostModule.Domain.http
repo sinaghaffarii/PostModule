@@ -1,6 +1,0 @@
-@PostModule.Domain_HostAddress = http://localhost:5009
-
-GET {{PostModule.Domain_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
