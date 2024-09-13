@@ -1,16 +1,37 @@
-﻿using PostModule.Domain.CityEntity;
+﻿using PostModule.Application.Contract.CityApplication;
+using PostModule.Domain.CityEntity;
 using PostModule.Domain.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PostModule.Infrastructure.EF.Repositories
 {
-    internal class CityRepository : Repository<int, City>, ICityRepository
+    public class CityRepository : Repository<int, City>, ICityRepository
     {
+        private readonly Post_Context _context;
+        public CityRepository(Post_Context context) : base(context)
+        {
+            _context = context;
+        }
 
+        public List<CityViewModel> GetAllForState(int stateId)
+        {
+            return GetAllByQuery(c => c.StateId == stateId).Select(c => new CityViewModel
+            {
+                CreateDate = c.CreateDate.ToString(),
+                Id = c.id,
+                Status = c.Status,
+                Title = c.Title,
+            }).ToList();
+        }
+
+        public EditCityModel GetCityForEdit(int id)
+        {
+           var city = GetById(id);
+            return new()
+            {
+                Id = city.id,
+                Status = city.Status,
+                Title = city.Title,
+            };
+        }
     }
 }

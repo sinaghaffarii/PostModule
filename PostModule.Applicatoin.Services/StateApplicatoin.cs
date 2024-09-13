@@ -1,42 +1,43 @@
 ﻿using PostModule.Application.Contract.StateApplication;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PostModule.Domain.Services;
+using PostModule.Domain.StateEntity;
+using System.Reflection.Metadata.Ecma335;
+
 
 namespace PostModule.Applicatoin.Services
 {
     public class StateApplicatoin : IStateApplicatoin
     {
+        private readonly IStateRepository _stateRepository;
+        public StateApplicatoin(IStateRepository stateRepository)
+        {
+            _stateRepository = stateRepository;
+        }
         public bool Create(CreateStateModel command)
         {
-            throw new NotImplementedException();
+            State state = new(command.Title);
+            return _stateRepository.Create(state);
         }
 
         public bool Edit(EditStateModel command)
         {
-            throw new NotImplementedException();
+            var state = _stateRepository.GetById(command.Id);
+            state.Edit(command.Title);
+            return _stateRepository.Save();
         }
 
-        public bool ExistTitleForCreate(string title)
-        {
-            throw new NotImplementedException();
-        }
+        public bool ExistTitleForCreate(string title) =>
+             _stateRepository.ExistBy(s => s.Title == title);
 
-        public bool ExistTitleForEdit(string title, int id)
-        {
-            throw new NotImplementedException();
-        }
+        public bool ExistTitleForEdit(string title, int id) =>
+             _stateRepository.ExistBy(s => s.Title == title && s.id != id);
 
-        public List<StateViewModel> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+        public List<StateViewModel> GetAll() =>
+            _stateRepository.GetAllStateViewModel();
 
         public EditStateModel GetStateForEdit(int id)
         {
-            throw new NotImplementedException();
+            return _stateRepository.GetStateForEdit(id);
         }
     }
 }

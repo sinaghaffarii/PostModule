@@ -10,8 +10,8 @@ namespace PostModule.Application.Contract.CityApplication
     {
         bool Create(CreateCityModel command);
         bool Edit(EditCityModel command);
-        bool ExitTitleForCreate(string title);
-        bool ExitTitleForEdit(string title, int id);
+        bool ExitTitleForCreate(string title, int stateId);
+        bool ExitTitleForEdit(string title, int id, int stateId);
         EditCityModel GetCityForEdit(int id);
         List<CityViewModel> GetAllForState(int stateId);
     }

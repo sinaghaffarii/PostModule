@@ -14,6 +14,7 @@ namespace PostModule.Infrastructure.EF.Mapping
             builder.HasKey(b => b.id);
 
             builder.Property(b => b.Title).IsRequired(true).HasMaxLength(150);
+            builder.Property(b => b.Status).IsRequired(true);
             builder.HasOne(b => b.State).WithMany(s => s.Cities).HasForeignKey(c => c.StateId);
         
 

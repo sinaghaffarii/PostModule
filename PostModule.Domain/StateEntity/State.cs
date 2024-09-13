@@ -7,7 +7,7 @@ namespace PostModule.Domain.StateEntity
     {
         public string Title { get; private set; }
         public string CloseStates { get; private set; }
-        public List<City> Cities { get; set; }
+        public List<City> Cities { get; private set; }
         public State(string title)
         {
             Title = title;
@@ -24,4 +24,4 @@ namespace PostModule.Domain.StateEntity
         }
     }
 }
-}
+

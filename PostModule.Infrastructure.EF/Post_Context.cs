@@ -5,7 +5,7 @@ using PostModule.Infrastructure.EF.Mapping;
 
 namespace PostModule.Infrastructure.EF
 {
-    internal class Post_Context : DbContext
+    public class Post_Context : DbContext
     {
         public Post_Context(DbContextOptions<Post_Context> options) : base(options)
         {
