@@ -4,7 +4,7 @@ using PostModule.Domain.Services;
 
 namespace PostModule.Infrastructure.EF.Repositories
 {
-    public class CityRepository : Repository<int, City>, ICityRepository
+    internal class CityRepository : Repository<int, City>, ICityRepository
     {
         private readonly Post_Context _context;
         public CityRepository(Post_Context context) : base(context)

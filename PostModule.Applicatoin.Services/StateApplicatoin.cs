@@ -6,7 +6,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace PostModule.Applicatoin.Services
 {
-    public class StateApplicatoin : IStateApplicatoin
+    internal class StateApplicatoin : IStateApplicatoin
     {
         private readonly IStateRepository _stateRepository;
         public StateApplicatoin(IStateRepository stateRepository)

@@ -11,9 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PostModule.Application.Contract\PostModule.Application.Contract.csproj" />
-    <ProjectReference Include="..\PostModule.Domain\PostModule.Domain.csproj" />
-    <ProjectReference Include="..\_Utilities\_Utilities.csproj" />
+    <ProjectReference Include="..\PostModule.Applicatoin.Services\PostModule.Applicatoin.Services.csproj" />
+    <ProjectReference Include="..\PostModule.Infrastructure.EF\PostModule.Infrastructure.EF.csproj" />
   </ItemGroup>
 
 </Project>

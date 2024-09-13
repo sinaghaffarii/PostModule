@@ -6,7 +6,7 @@ using PostModule.Domain.StateEntity;
 
 namespace PostModule.Applicatoin.Services
 {
-    public class CityApplication : ICityApplication
+    internal class CityApplication : ICityApplication
     {
         private readonly ICityRepository _cityRepository;
         public CityApplication(ICityRepository cityRepository)
