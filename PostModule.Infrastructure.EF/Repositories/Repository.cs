@@ -37,6 +37,12 @@ namespace PostModule.Infrastructure.EF.Repositories
         public IEnumerable<T> GetAllBy(Expression<Func<T, bool>> expression) =>
             _context.Set<T>().Where(expression).ToList();
 
+        public IQueryable<T> GetAllByQuery(Expression<Func<T, bool>> expression) =>
+            _context.Set<T>().Where(expression);
+
+        public IQueryable<T> GetAllQuery() =>
+            _context.Set<T>();
+
         public T GetById(Tkey id) =>
             _context.Find<T>(id);
 
