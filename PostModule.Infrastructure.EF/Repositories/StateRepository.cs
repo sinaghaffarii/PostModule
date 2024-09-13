@@ -4,7 +4,7 @@ using PostModule.Domain.StateEntity;
 
 namespace PostModule.Infrastructure.EF.Repositories
 {
-    public class StateRepository : Repository<int, State>, IStateRepository
+    internal class StateRepository : Repository<int, State>, IStateRepository
     {
         private readonly Post_Context _context;
         public StateRepository(Post_Context context): base(context)
