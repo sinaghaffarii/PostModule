@@ -6,6 +6,8 @@ namespace PostModule.Domain.Services
     {
         IEnumerable<T> GetAll();
         IEnumerable<T> GetAllBy(Expression<Func<T, bool>> expression);
+        IQueryable<T> GetAllQuery();
+        IQueryable<T> GetAllByQuery(Expression<Func<T, bool>> expression);
         T GetById(Tkey id);
         bool Create(T Entity);
         bool Delete(T Entity);
