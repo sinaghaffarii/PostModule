@@ -1,5 +1,9 @@
 
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.Extensions.Options;
 using PostModule.Query;
+using Presantation.WebApi.Utility;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -13,7 +17,24 @@ Post_Bootstrapper.Config(services, local);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+#region Versioning
+services.AddApiVersioning(option =>
+{
+    option.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+    option.AssumeDefaultVersionWhenUnspecified = true;
+    option.ReportApiVersions = true;
+});
+
+services.AddVersionedApiExplorer(option =>
+{
+    option.GroupNameFormat = "'v'VVVV";
+});
+#endregion
+#region Swagger
+services.AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerPostDocument>();
+services.AddSwaggerGen();
+#endregion
+
 
 var app = builder.Build();
 
@@ -21,7 +42,18 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(x =>
+    {
+        var provider = app.Services.CreateScope().ServiceProvider.GetRequiredService<IApiVersionDescriptionProvider>();
+
+        foreach (var item in provider.ApiVersionDescriptions)
+        {
+            x.SwaggerEndpoint($"/swagger/{item.GroupName}/swagger.json", item.GroupName.ToString());
+        }
+
+        //x.SwaggerEndpoint("/swagger/VilaOpenApi/swagger.json", "Vila Open Api");
+        x.RoutePrefix = "";
+    });
 }
 
 app.UseHttpsRedirection();
