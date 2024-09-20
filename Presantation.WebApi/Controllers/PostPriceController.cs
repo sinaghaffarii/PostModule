@@ -1,47 +1,48 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PostModule.Application.Contract.PostApplication;
+using PostModule.Application.Contract.PostPriceApplication;
 
 namespace Presantation.WebApi.Controllers
 {
-    [Route("api/v{version:ApiVersion}/Post")]
+    [Route("api/v{version:ApiVersion}/PostPrice")]
     [ApiController]
-    public class PostController : ControllerBase
+    public class PostPriceController : ControllerBase
     {
-        private readonly IPostApplication _postApplication;
-        public PostController(IPostApplication postApplication)
+        private readonly IPostPriceApplication _postPriceApplication;
+        public PostPriceController(IPostPriceApplication postPriceApplication)
         {
-            _postApplication = postApplication;
+            _postPriceApplication = postPriceApplication;
         }
-        [HttpGet("[action]")]
-        public IActionResult GetAll()
+        [HttpGet("[action]/{id}")]
+        public IActionResult GetAllForPost(int id)
         {
-            var model = _postApplication.GetAll();
+            var model = _postPriceApplication.GetAllForPost(id);
             return Ok(model);
         }
         [HttpGet("[action]/{id}")]
         public IActionResult Get(int id)
         {
-            var model = _postApplication.GetForEdit(id);
+            var model = _postPriceApplication.GetForEdit(id);
             return Ok(model);
         }
         [HttpPost]
-        public IActionResult Create([FromBody] CreatePost model)
+        public IActionResult Create([FromBody] CreatePostPrice model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var res = _postApplication.Create(model);
+            var res = _postPriceApplication.Create(model);
             if (res.Success) return Ok();
             return BadRequest(new { message = res.Message });
         }
         [HttpPatch]
-        public IActionResult Edit([FromBody] EditPost model)
+        public IActionResult Edit([FromBody] EditPostPrice model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var res = _postApplication.Edit(model);
+            var res = _postPriceApplication.Edit(model);
             if (res.Success) return NoContent();
             return BadRequest(new { message = res.Message });
 
