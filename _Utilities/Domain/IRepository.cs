@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace PostModule.Domain.Services
+namespace _Utilities.Domain
 {
     public interface IRepository<Tkey, T> where T : class
     {

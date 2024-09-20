@@ -15,8 +15,6 @@ Post_Bootstrapper.Config(services, local);
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
 #region Versioning
 services.AddApiVersioning(option =>
 {
@@ -50,9 +48,9 @@ if (app.Environment.IsDevelopment())
         {
             x.SwaggerEndpoint($"/swagger/{item.GroupName}/swagger.json", item.GroupName.ToString());
         }
+            x.RoutePrefix = "";
 
         //x.SwaggerEndpoint("/swagger/VilaOpenApi/swagger.json", "Vila Open Api");
-        x.RoutePrefix = "";
     });
 }
 

@@ -4,5 +4,11 @@
         <name>Presantation.WebApi</name>
     </assembly>
     <members>
+        <member name="M:Presantation.WebApi.Controllers.StateController.GetAll">
+            <summary>
+            دریافت لیست استان ها به همراه شهر های آن و کد شهر 
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>

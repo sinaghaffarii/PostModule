@@ -11,6 +11,8 @@ namespace PostModule.Infrastructure.EF
         {
             services.AddTransient<IStateRepository, StateRepository>();
             services.AddTransient<ICityRepository, CityRepository>();
+            services.AddTransient<IPostRepository, PostRepository>();
+            services.AddTransient<IPostPriceRepository, PostPriceRepository>();
 
             services.AddDbContext<Post_Context>(x =>
             {
