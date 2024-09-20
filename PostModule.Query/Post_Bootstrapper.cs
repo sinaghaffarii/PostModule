@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using PostModule.Application.Contract.StateQuery;
 using PostModule.Applicatoin.Services;
 using PostModule.Infrastructure.EF;
+using PostModule.Query.Services;
 
 
 namespace PostModule.Query
@@ -11,6 +13,8 @@ namespace PostModule.Query
         {
             PostInfrastructure_Bootstrapper.Config(services, connectionString);
             PostApplication_Bootstrapper.Config(services);
+
+            services.AddTransient<IStateQuery, StateQuery>(); 
         }
     }
 }

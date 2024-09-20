@@ -2,6 +2,7 @@
 using PostModule.Domain.StateEntity;
 using PostModule.Domain.CityEntity;
 using PostModule.Infrastructure.EF.Mapping;
+using PostModule.Domain.PostEntity;
 
 namespace PostModule.Infrastructure.EF
 {
@@ -13,11 +14,14 @@ namespace PostModule.Infrastructure.EF
         }
         public DbSet<State> states { get; set; }
         public DbSet<City> Cities { get; set; }
+        public DbSet<Post> Post { get; set; }
+        public DbSet<PostPrice> PostPrice { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new StateMapping());
             modelBuilder.ApplyConfiguration(new CityMapping());
+            modelBuilder.ApplyConfiguration(new PostMapping());
 
             base.OnModelCreating(modelBuilder);
         }

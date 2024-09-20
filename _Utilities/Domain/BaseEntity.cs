@@ -1,4 +1,4 @@
-﻿namespace PostModule.Domain.Common
+﻿namespace _Utilities.Domain
 {
     public class BaseEntity<TKey>
     {
@@ -7,7 +7,7 @@
 
         public BaseEntity()
         {
-            CreateDate =  DateTime.Now;
+            CreateDate = DateTime.Now;
         }
     }
 }

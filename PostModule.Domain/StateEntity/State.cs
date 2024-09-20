@@ -1,5 +1,5 @@
-﻿using PostModule.Domain.CityEntity;
-using PostModule.Domain.Common;
+﻿using _Utilities.Domain;
+using PostModule.Domain.CityEntity;
 
 namespace PostModule.Domain.StateEntity
 {
