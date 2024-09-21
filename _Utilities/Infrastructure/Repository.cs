@@ -43,8 +43,10 @@ namespace _Utilities.Infrastructure
         public IQueryable<T> GetAllQuery() =>
             _context.Set<T>();
 
+#pragma warning disable CS8603 // Possible null reference return.
         public T GetById(Tkey id) =>
             _context.Find<T>(id);
+#pragma warning restore CS8603 // Possible null reference return.
 
         public bool Save() =>
             _context.SaveChanges() >= 0 ? true : false;

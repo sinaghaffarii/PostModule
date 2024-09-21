@@ -3,11 +3,7 @@ using _Utilities.Infrastructure;
 using PostModule.Application.Contract.PostApplication;
 using PostModule.Domain.PostEntity;
 using PostModule.Domain.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace PostModule.Infrastructure.EF.Repositories
 {
@@ -33,6 +29,10 @@ namespace PostModule.Infrastructure.EF.Repositories
                 Status = p.Status,
                 TehranPricePlus = p.TehranPricePlus,
                 Title = p.Title,
+                Description = p.Description,
+                Active = p.Active,
+                InsideCity = p.InsideCity,
+                OutSideCity = p.OutSideCity
             }).ToList();
         }
 
@@ -49,6 +49,7 @@ namespace PostModule.Infrastructure.EF.Repositories
                 Status = p.Status,
                 TehranPricePlus = p.TehranPricePlus,
                 Title = p.Title,
+                Description = p.Description
             }).SingleOrDefault(p => p.Id == id);
         }
     }
