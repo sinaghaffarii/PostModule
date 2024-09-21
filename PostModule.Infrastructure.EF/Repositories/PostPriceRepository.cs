@@ -36,6 +36,7 @@ namespace PostModule.Infrastructure.EF.Repositories
 
         public EditPostPrice GetForEdit(int id)
         {
+#pragma warning disable CS8603 // Possible null reference return.
            return _context.PostPrice.Select(p => new EditPostPrice
            {
                CityPrice = p.CityPrice,
@@ -48,6 +49,7 @@ namespace PostModule.Infrastructure.EF.Repositories
                StateNonClosePrice = p.StateNonClosePrice,
                TehranPrice = p.TehranPrice,  
            }).SingleOrDefault(p => p.Id == id);
+#pragma warning restore CS8603 // Possible null reference return.
         }
     }
 }
